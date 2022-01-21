@@ -17,7 +17,7 @@ public class PanelOfListServices extends JPanel {
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(150, 0));
 
-//      Initialization passwordBase and listOfServices
+//      Initialization passwordCardsContainer and listOfServices
         this.passwordCardsContainer = passBase;
         this.createListOfServices();
 

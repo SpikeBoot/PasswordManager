@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="password_manager.db" uuid="9d2525b1-c765-4867-bf47-4ce137e37291">
+    <data-source source="LOCAL" name="password_manager.db" uuid="df828d6b-6f92-443f-ae91-dabfbe73fe7b">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:password_manager.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/password_manager.db</jdbc-url>
     </data-source>
   </component>
 </project>

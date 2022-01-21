@@ -32,7 +32,6 @@ public class PanelOfViewPassword extends JPanel {
     private JTextField textFieldOfDescription;
 
     private JButton editButton;
-    private JButton saveButton;
     private JButton deleteButton;
 
     private ArrayList<JLabel> labels = new ArrayList<>();
@@ -103,33 +102,44 @@ public class PanelOfViewPassword extends JPanel {
 
     private void initButtons() {
         editButton = new JButton();
-        saveButton = new JButton();
         deleteButton = new JButton();
 
         editButton.setIcon(new ImageIcon("./src/main/resources/icons/edit.png"));
-        saveButton.setIcon(new ImageIcon("./src/main/resources/icons/save.png"));
         deleteButton.setIcon(new ImageIcon("./src/main/resources/icons/delete.png"));
 
         editButton.addActionListener(e -> {
-            editPasswordCard(passwordCard);
-            panelOfListServices.repaint();
-        });
 
-        saveButton.addActionListener(e -> {
-            passwordCardsContainer.writePasswordBase();
+            passwordCardsContainer.editPasswordCard(passwordCardsContainer.
+                            getListOfPasswordCards().
+                            get(currentPasswordCardsIndex).
+                            getId(),
+                    textFieldOfServiceName.getText(),
+                    textFieldOfEmail.getText(),
+                    textFieldOfPass.getText(),
+                    textFieldOfRecoveryCode.getText(),
+                    textFieldOfSecretQuestion.getText(),
+                    textFieldOfSecretQuestionAnswer.getText(),
+                    textFieldOfDescription.getText());
+
+            panelOfListServices.updateListOfServices();
+//            panelOfListServices.repaint();
         });
 
         deleteButton.addActionListener(e -> {
-            passwordCardsContainer.getListOfPasswordCards().remove(currentPasswordCardsIndex);
+
+            passwordCardsContainer.removePasswordCard(passwordCardsContainer.
+                    getListOfPasswordCards().
+                    get(currentPasswordCardsIndex).
+                    getId());
+
             panelOfListServices.updateListOfServices();
 
-            for(JTextField textField: textFields){
+            for (JTextField textField : textFields) {
                 textField.setText("");
             }
         });
 
         buttons.add(editButton);
-        buttons.add(saveButton);
         buttons.add(deleteButton);
 
         for (int i = 0; i < buttons.size(); i++) {
@@ -137,7 +147,7 @@ public class PanelOfViewPassword extends JPanel {
             buttons.get(i).setFocusPainted(false);
             buttons.get(i).setContentAreaFilled(false);
             buttons.get(i).setSize(50, 50);
-            buttons.get(i).setLocation(new Point(i * 100 + 80, 230));
+            buttons.get(i).setLocation(new Point(i * 100 + 130, 230));
             this.add(buttons.get(i));
         }
     }
@@ -151,16 +161,6 @@ public class PanelOfViewPassword extends JPanel {
         textFieldOfSecretQuestion.setText(passwordCard.getSecretQuestion());
         textFieldOfSecretQuestionAnswer.setText(passwordCard.getSecretQuestionAnswer());
         textFieldOfDescription.setText(passwordCard.getDescription());
-    }
-
-    public void editPasswordCard(PasswordCard passwordCard) {
-        passwordCard.setServiceName(textFieldOfServiceName.getText());
-        passwordCard.setEmail(textFieldOfEmail.getText());
-        passwordCard.setPass(textFieldOfPass.getText());
-        passwordCard.setRecoveryCode(textFieldOfRecoveryCode.getText());
-        passwordCard.setSecretQuestion(textFieldOfSecretQuestion.getText());
-        passwordCard.setSecretQuestionAnswer(textFieldOfSecretQuestionAnswer.getText());
-        passwordCard.setDescription(textFieldOfDescription.getText());
     }
 
     public void setCurrentPasswordCardsIndex(int currentPasswordCardsIndex) {

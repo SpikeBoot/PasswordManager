@@ -30,16 +30,14 @@ public class PanelOfNewPassword extends JPanel {
     private JTextField textFieldOfDescription;
 
     private JButton addButton;
-    private JButton saveButton;
 
     private ArrayList<JLabel> labels = new ArrayList<>();
     private ArrayList<JTextField> textFields = new ArrayList<>();
-    private ArrayList<JButton> buttons = new ArrayList<>();
 
-    public PanelOfNewPassword(PasswordCardsContainer passBase){
+    public PanelOfNewPassword(PasswordCardsContainer passwordCardsContainer) {
         this.setLayout(null);
 
-        this.passwordCardsContainer = passBase;
+        this.passwordCardsContainer = passwordCardsContainer;
 
         initLabels();
         initTextFields();
@@ -98,49 +96,35 @@ public class PanelOfNewPassword extends JPanel {
 
     private void initButtons() {
         addButton = new JButton();
-        saveButton = new JButton();
-
 
         addButton.setIcon(new ImageIcon("./src/main/resources/icons/add.png"));
-        saveButton.setIcon(new ImageIcon("./src/main/resources/icons/save.png"));
-
 
         addButton.addActionListener(e -> {
-            createNewPasswordCard();
+            if (!textFieldOfServiceName.getText().trim().equals("")) {
+
+                passwordCardsContainer.createPasswordCard(
+                        textFieldOfServiceName.getText(),
+                        textFieldOfEmail.getText(),
+                        textFieldOfPass.getText(),
+                        textFieldOfRecoveryCode.getText(),
+                        textFieldOfSecretQuestion.getText(),
+                        textFieldOfSecretQuestionAnswer.getText(),
+                        textFieldOfDescription.getText());
+
+                for (JTextField textField : textFields) {
+                    textField.setText("");
+                }
+            }
             panelOfListServices.updateListOfServices();
         });
 
-        saveButton.addActionListener(e -> {
-            passwordCardsContainer.writePasswordBase();
-        });
+        addButton.setBorderPainted(true);
+        addButton.setFocusPainted(false);
+        addButton.setContentAreaFilled(false);
+        addButton.setSize(50, 50);
+        addButton.setLocation(new Point(180, 230)); // change position
+        this.add(addButton);
 
-        buttons.add(addButton);
-        buttons.add(saveButton);
-
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).setBorderPainted(true);
-            buttons.get(i).setFocusPainted(false);
-            buttons.get(i).setContentAreaFilled(false);
-            buttons.get(i).setSize(50, 50);
-            buttons.get(i).setLocation(new Point(i * 100 + 140, 230));
-            this.add(buttons.get(i));
-        }
-    }
-
-    private void createNewPasswordCard(){
-        if(!textFieldOfServiceName.getText().trim().equals("")){
-            passwordCardsContainer.getListOfPasswordCards().add(new PasswordCard(
-                    textFieldOfServiceName.getText(),
-                    textFieldOfEmail.getText(),
-                    textFieldOfPass.getText(),
-                    textFieldOfRecoveryCode.getText(),
-                    textFieldOfSecretQuestion.getText(),
-                    textFieldOfSecretQuestionAnswer.getText(),
-                    textFieldOfDescription.getText()));
-            for(JTextField textField: textFields){
-                textField.setText("");
-            }
-        }
     }
 
     public void setPanelOfListServices(PanelOfListServices panelOfListServices) {
