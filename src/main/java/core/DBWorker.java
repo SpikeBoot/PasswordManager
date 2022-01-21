@@ -3,13 +3,11 @@ package core;
 import java.sql.*;
 
 public class DBWorker {
-    private final String URL;
 
-    Connection connection;
+    private final String URL = "jdbc:sqlite:password_base.db";
+    private Connection connection;
 
-    DBWorker (String url){
-        this.URL = url;
-
+    DBWorker (){
         try{
             Class.forName("org.sqlite.JDBC");
             System.out.println("Driver was register");
@@ -31,9 +29,9 @@ public class DBWorker {
 
 }
 
-class Test{
-    public static void main(String[] args) {
-        DBWorker db = new DBWorker("jdbc:sqlite:password_base.db");
-        db.getConnection();
-    }
-}
+//class Test{
+//    public static void main(String[] args) {
+//        DBWorker db = new DBWorker("jdbc:sqlite:password_base.db");
+//        db.getConnection();
+//    }
+//}

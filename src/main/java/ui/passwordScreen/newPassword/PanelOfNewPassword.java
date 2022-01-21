@@ -1,6 +1,6 @@
 package ui.passwordScreen.newPassword;
 
-import core.PasswordBase;
+import core.PasswordCardsContainer;
 import core.PasswordCard;
 import ui.listOfServices.PanelOfListServices;
 
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PanelOfNewPassword extends JPanel {
-    private PasswordBase passwordBase;
+    private PasswordCardsContainer passwordCardsContainer;
 
     private PanelOfListServices panelOfListServices;
 
@@ -36,10 +36,10 @@ public class PanelOfNewPassword extends JPanel {
     private ArrayList<JTextField> textFields = new ArrayList<>();
     private ArrayList<JButton> buttons = new ArrayList<>();
 
-    public PanelOfNewPassword(PasswordBase passBase){
+    public PanelOfNewPassword(PasswordCardsContainer passBase){
         this.setLayout(null);
 
-        this.passwordBase = passBase;
+        this.passwordCardsContainer = passBase;
 
         initLabels();
         initTextFields();
@@ -111,7 +111,7 @@ public class PanelOfNewPassword extends JPanel {
         });
 
         saveButton.addActionListener(e -> {
-            passwordBase.writePasswordBase();
+            passwordCardsContainer.writePasswordBase();
         });
 
         buttons.add(addButton);
@@ -129,7 +129,7 @@ public class PanelOfNewPassword extends JPanel {
 
     private void createNewPasswordCard(){
         if(!textFieldOfServiceName.getText().trim().equals("")){
-            passwordBase.getListOfPasswordCards().add(new PasswordCard(
+            passwordCardsContainer.getListOfPasswordCards().add(new PasswordCard(
                     textFieldOfServiceName.getText(),
                     textFieldOfEmail.getText(),
                     textFieldOfPass.getText(),

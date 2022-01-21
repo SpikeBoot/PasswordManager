@@ -2,7 +2,8 @@ package core;
 
 import java.util.Objects;
 
-public class PasswordCard implements Comparable <PasswordCard>{
+public class PasswordCard implements Comparable<PasswordCard> {
+    private int id;
     private String serviceName;
     private String email;
     private String pass;
@@ -11,7 +12,8 @@ public class PasswordCard implements Comparable <PasswordCard>{
     private String secretQuestionAnswer;
     private String description;
 
-    public PasswordCard(String serviceName,
+    public PasswordCard(int id,
+                        String serviceName,
                         String email,
                         String pass,
                         String recoveryCode,
@@ -19,6 +21,7 @@ public class PasswordCard implements Comparable <PasswordCard>{
                         String secretQuestionAnswer,
                         String description) {
 
+        this.id = id;
         this.serviceName = serviceName;
         this.email = email;
         this.pass = pass;
@@ -28,57 +31,13 @@ public class PasswordCard implements Comparable <PasswordCard>{
         this.description = description;
     }
 
-    /*
-     * Replace String interpretation from passwordbase.txt to PasswordCard like object
-     * */
-    public static PasswordCard transferFromString(String strPassCard) {
-        String serviceName = strPassCard.substring(
-                strPassCard.indexOf("ServiceName:") + 12,
-                strPassCard.indexOf("\nEmail:"));
-        String email = strPassCard.substring(
-                strPassCard.indexOf("Email:") + 6,
-                strPassCard.indexOf("\nPass:"));
-        String pass = strPassCard.substring(
-                strPassCard.indexOf("Pass:") + 5,
-                strPassCard.indexOf("\nRecoveryCode:"));
-        String recoveryCode = strPassCard.substring(
-                strPassCard.indexOf("RecoveryCode:") + 13,
-                strPassCard.indexOf("\nSecretQuestion:"));
-        String secretQuestion = strPassCard.substring(
-                strPassCard.indexOf("SecretQuestion:") + 15,
-                strPassCard.indexOf("\nSecretQuestionAnswer:"));
-        String secretQuestionAnswer = strPassCard.substring(
-                strPassCard.indexOf("SecretQuestionAnswer:") + 21,
-                strPassCard.indexOf("\nDescription:"));
-        String description = strPassCard.substring(
-                strPassCard.indexOf("Description:") + 12,
-                strPassCard.length() - 1);
-
-        return new PasswordCard(
-                serviceName,
-                email,
-                pass,
-                recoveryCode,
-                secretQuestion,
-                secretQuestionAnswer,
-                description);
+    public int getId() {
+        return id;
     }
 
-    /*
-     * Replace PasswordCard like object in String interpretation
-     * for writing in passwordbase.txt
-     * */
-    public String transferToString() {
-        return ("ServiceName:" + serviceName + "\n" +
-                "Email:" + email + "\n" +
-                "Pass:" + pass + "\n" +
-                "RecoveryCode:" + recoveryCode + "\n" +
-                "SecretQuestion:" + secretQuestion + "\n" +
-                "SecretQuestionAnswer:" + secretQuestionAnswer + "\n" +
-                "Description:" + description + "\n" +
-                "<card>\n");
+    public void setId(int id) {
+        this.id = id;
     }
-
 
     public String getServiceName() {
         return serviceName;

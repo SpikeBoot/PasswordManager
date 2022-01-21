@@ -1,6 +1,6 @@
 package ui.passwordScreen;
 
-import core.PasswordBase;
+import core.PasswordCardsContainer;
 import ui.passwordScreen.newPassword.PanelOfNewPassword;
 import ui.passwordScreen.viewPassword.PanelOfViewPassword;
 
@@ -10,7 +10,7 @@ public class PanelOfPasswords extends JTabbedPane {
     private PanelOfViewPassword panelOfViewPassword;
     private PanelOfNewPassword panelOfNewPassword;
 
-    public PanelOfPasswords(PasswordBase passBase){
+    public PanelOfPasswords(PasswordCardsContainer passBase){
         panelOfViewPassword = new PanelOfViewPassword(passBase);
         panelOfNewPassword = new PanelOfNewPassword(passBase);
 

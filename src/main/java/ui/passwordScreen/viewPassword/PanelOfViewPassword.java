@@ -1,6 +1,6 @@
 package ui.passwordScreen.viewPassword;
 
-import core.PasswordBase;
+import core.PasswordCardsContainer;
 import core.PasswordCard;
 import ui.listOfServices.PanelOfListServices;
 
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PanelOfViewPassword extends JPanel {
-    private PasswordBase passwordBase;
+    private PasswordCardsContainer passwordCardsContainer;
     private PasswordCard passwordCard;
     private int currentPasswordCardsIndex;
 
@@ -39,11 +39,11 @@ public class PanelOfViewPassword extends JPanel {
     private ArrayList<JTextField> textFields = new ArrayList<>();
     private ArrayList<JButton> buttons = new ArrayList<>();
 
-    public PanelOfViewPassword(PasswordBase passBase) {
+    public PanelOfViewPassword(PasswordCardsContainer passBase) {
         this.setLayout(null);
 
 //        Init PasswordBase
-        this.passwordBase = passBase;
+        this.passwordCardsContainer = passBase;
 
         this.initLabels();
         this.initTextFields();
@@ -116,11 +116,11 @@ public class PanelOfViewPassword extends JPanel {
         });
 
         saveButton.addActionListener(e -> {
-            passwordBase.writePasswordBase();
+            passwordCardsContainer.writePasswordBase();
         });
 
         deleteButton.addActionListener(e -> {
-            passwordBase.getListOfPasswordCards().remove(currentPasswordCardsIndex);
+            passwordCardsContainer.getListOfPasswordCards().remove(currentPasswordCardsIndex);
             panelOfListServices.updateListOfServices();
 
             for(JTextField textField: textFields){

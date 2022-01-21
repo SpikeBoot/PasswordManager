@@ -1,7 +1,7 @@
 package ui;
 
 
-import core.PasswordBase;
+import core.PasswordCardsContainer;
 import ui.listOfServices.PanelOfListServices;
 import ui.passwordScreen.PanelOfPasswords;
 
@@ -14,7 +14,7 @@ public class MainWindow extends JFrame {
     private PanelOfPasswords panelOfPasswords;
 
 //    This only one Password Base
-    private PasswordBase passwordBase = new PasswordBase();
+    private PasswordCardsContainer passwordCardsContainer = new PasswordCardsContainer();
 
     public MainWindow() {
 //        Settings of main window
@@ -28,8 +28,8 @@ public class MainWindow extends JFrame {
 
 
 //        Initialisation inner panels and transfer reference on Password Base
-        panelOfListServices = new PanelOfListServices(passwordBase);
-        panelOfPasswords = new PanelOfPasswords(passwordBase);
+        panelOfListServices = new PanelOfListServices(passwordCardsContainer);
+        panelOfPasswords = new PanelOfPasswords(passwordCardsContainer);
 
 //        Transfer object PanelOfViewPassword for access from PanelOfListServices
         panelOfListServices.setPanelOfViewPassword(panelOfPasswords.getPanelOfViewPassword());
