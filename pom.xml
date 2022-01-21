@@ -50,6 +50,7 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>icons/</include>
+                    <include>SQLite/</include>
                 </includes>
             </resource>
         </resources>

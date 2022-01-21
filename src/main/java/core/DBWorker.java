@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DBWorker {
 
-    private final String URL = "jdbc:sqlite:password_manager.db";
+    private final String URL = "jdbc:sqlite:src\\main\\resources\\SQLite\\password_manager.db";
     private Connection connection;
 
     DBWorker (){
@@ -28,10 +28,3 @@ public class DBWorker {
     }
 
 }
-
-//class Test{
-//    public static void main(String[] args) {
-//        DBWorker db = new DBWorker("jdbc:sqlite:password_base.db");
-//        db.getConnection();
-//    }
-//}
