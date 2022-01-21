@@ -1,7 +1,6 @@
 package ui.passwordScreen.newPassword;
 
 import core.PasswordCardsContainer;
-import core.PasswordCard;
 import ui.listOfServices.PanelOfListServices;
 
 import javax.swing.*;
