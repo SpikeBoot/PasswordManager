@@ -136,6 +136,7 @@ public class PasswordCard implements Comparable <PasswordCard>{
         this.description = description;
     }
 
+
 //    Old toString() method
 //    @Override
 //    public String toString() {
